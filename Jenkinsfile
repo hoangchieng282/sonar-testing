@@ -7,7 +7,7 @@ pipeline {
     // }
     agent any
     tools {
-        maven 
+        maven 'MAVEN-PATH'
         // sonarqube
     }
     stages {
