@@ -27,16 +27,13 @@ pipeline {
             }
         }
         stage('Sonarqube') {
-            environment {
-                scannerHome = tool 'sonarqube'
-            }
             steps {
-                withSonarQubeEnv('sonarqube') {
-                    sh "${scannerHome}/bin/sonar-scanner"
-                }
-                timeout(time: 10, unit: 'MINUTES') {
-                    waitForQualityGate abortPipeline: true
-                }
+                sh '''
+                    mvn sonar:sonar \
+                    -Dsonar.projectKey=jenkins-test \
+                    -Dsonar.host.url=http://localhost:9000 \
+                    -Dsonar.login=723f4a3c180ec5e569fabfb364a41053b7771f63
+                '''
             }
         }
     }
