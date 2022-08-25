@@ -7,8 +7,8 @@ pipeline {
     // }
     agent any
     tools {
-        maven 
-        sonarqube
+        maven 'apache-maven-3.0.1'
+        // sonarqube
     }
     stages {
         stage('Build') {
